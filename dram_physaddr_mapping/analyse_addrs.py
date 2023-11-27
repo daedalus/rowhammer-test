@@ -36,9 +36,7 @@ def GetResultAddrs(log_filename):
 
 
 def FormatBits(val, bits):
-  got = []
-  for bit in xrange(bits - 1, -1, -1):
-    got.append(str((val >> bit) & 1))
+  got = [str((val >> bit) & 1) for bit in xrange(bits - 1, -1, -1)]
   return ''.join(got)
 
 
@@ -64,7 +62,7 @@ def Convert(phys):
 
 
 def Format(fields):
-  return ' '.join('%s=%s' % (name, FormatBits(val, size))
+  return ' '.join(f'{name}={FormatBits(val, size)}'
                   for name, (val, size) in reversed(fields))
 
 
